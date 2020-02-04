@@ -3,10 +3,10 @@ from io import BytesIO
 import requests
 
 response = requests.get('http://api.tronalddump.io/random/meme')
-img = Image.open(BytesIO(response.content))
-img.show()
 
-if response:
-    print('Success!')
+if response.status_code == requests.codes.ok:
+    img = Image.open(BytesIO(response.content))
+    img.show()
+    print("Success!")
 else:
     print('An error has occurred.')
